@@ -18,7 +18,7 @@ now = datetime.datetime.now()
 def extract_news(url):
     print("Extracting Hacker News Stories...")
     cnt = ''
-    cnt += ("<b>HN Top Stories: </b>\n" + "<br>" + "-" *50+ "<br>")
+    cnt += ("HN Top Stories: \n" + "<br>" + "-" *50+ "<br>")
     response = requests.get(url)
     content = response.content
     soup = BeautifulSoup(content, 'html.parser')
@@ -26,3 +26,6 @@ def extract_news(url):
         cnt += ((str(i+1)+' :: '+tag.text + "\n" + '<br>') if tag.text!='More' else '')
         #print(tag.prettify) #find_all('span',attrs={'class':'sitestr'}))
     return(cnt)
+
+cnt = extract_news('https://news.ycombinator.com/')
+print(cnt)
